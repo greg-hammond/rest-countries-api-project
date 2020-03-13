@@ -1,0 +1,20 @@
+
+
+:root {
+  font-family: "open sans", arial, sans-serif;
+  user-select: none;
+
+}
+
+
+.border {
+  border: 1px solid #333;
+  border-radius: 0.2rem;
+  margin: 30px;
+  padding: 10px;
+}
+
+#results {
+  min-height: 400px;
+}
+
