@@ -3,18 +3,62 @@
 :root {
   font-family: "open sans", arial, sans-serif;
   user-select: none;
-
 }
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+p {
+  font-size: 14px;
+}
+
+input, button {
+  font-size: 100%;
+  padding: 5px;
+  margin: 5px;
+}
+
+#main {
+  width: 70%;
+  min-width: 700px;
+  margin: 30px auto;
+  padding: 10px;
+}
 
 .border {
   border: 1px solid #333;
   border-radius: 0.2rem;
-  margin: 30px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.country {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  background-color: rgb(247, 238, 228);
   padding: 10px;
 }
 
 #results {
   min-height: 400px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.flex { padding: 10px; }
+.flex2 { width: 20%; }
+.flex4 { width: 40%; }
+
+.flex2 img {
+  width: 100%;
+  height: auto;
 }
 

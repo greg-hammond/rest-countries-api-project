@@ -16,13 +16,12 @@ const init = () => {
 
         const formData = new FormData(form);    
 
-        // validate form data...
-        // read using formData.get(element_name)
 
         const srch = formData.get('search');
         if (!srch) {
-            alert("search text required!");
-            return false;
+            showResults({"status": 404, "message": "Please enter a search term."});
+            //alert("search text required!");
+            //return false;
         }
                 
         runSearch(formData)
@@ -53,20 +52,42 @@ const init = () => {
             rsltDiv.firstChild.remove();
         }
 
-        if (!results) {
-            // general failure - absolutely nothing returned
-            rsltDiv.textContent = `No data available!`;
-
-        } else if (results.status == 404) {
+        if (results.status) {
             // no matches returned from api
-            rsltDiv.textContent = `API returned no matches!`;
+            rsltDiv.textContent = results.message;
 
         } else {
             // normal case - 1 or more results
             // results is an array of objects...
             results.forEach( obj => {
                 let div = document.createElement("div");
-                div.textContent = obj.name;
+                div.classList.add("country", "border");
+                
+                // destructuring assignment
+                let { name, alpha2Code, alpha3Code, flag, region, subregion, population, languages } = obj;
+
+                languages = languages.map( i => i.name).join(", ");
+                
+                div.innerHTML =  `
+                    <div class='flex flex2'>
+                        <img src=${flag} />
+                    </div>
+                    <div class='flex flex4'>
+                        <p><span class='label'>Country:</span> ${name}</p>
+                        <p><span class='label'>Population:</span> ${Intl.NumberFormat().format(population)}</p>
+                        <p><span class='label'>Languages:</span> ${languages}</p>
+                    </div>
+                    <div class='flex flex4'>
+                        <p><span class='label'>Country Codes:</span> ${alpha2Code}, ${alpha3Code}</p>
+                        <p><span class='label'>Region:</span> ${region}</p>
+                        <p><span class='label'>Subregion:</span> ${subregion}</p>
+                    </div>
+                `;
+
+                
+
+
+
                 rsltDiv.appendChild(div);
             });
     
