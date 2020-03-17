@@ -1,64 +1,96 @@
-
-
-:root {
-  font-family: "open sans", arial, sans-serif;
-  user-select: none;
-}
-
-* {
-  padding: 0;
+html, body {
+  --border-color: #666;
+  height: 100%;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-p {
+div, label, p, input, button {
+  font-family: "open sans", arial, sans-serif;
   font-size: 14px;
+  margin: 0;
 }
 
-input, button {
-  font-size: 100%;
-  padding: 5px;
-  margin: 5px;
+h2 {
+  margin: 0;
 }
 
 #main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   width: 70%;
   min-width: 700px;
-  margin: 30px auto;
-  padding: 10px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0;
 }
 
-.border {
-  border: 1px solid #333;
-  border-radius: 0.2rem;
-  margin: 5px;
-  padding: 5px;
+#header {
+  flex: 0;
 }
-
-.country {
+#header .search-options {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-
-  background-color: rgb(247, 238, 228);
+  margin: 10px 0;
+}
+#header .search-options div {
+  margin-right: 10px;
+}
+#header .search-options input, #header .search-options label {
   padding: 10px;
+}
+#header .search-entry {
+  margin-bottom: 10px;
+}
+#header .search-entry input {
+  padding: 3px 15px;
 }
 
 #results {
-  min-height: 400px;
+  flex: 1;
+  overflow: auto;
+  border: 1px solid var(--border-color);
 }
-
-.label {
+#results.errorState {
+  padding-top: 30px;
+  text-align: center;
+  color: red;
+}
+#results .country {
+  display: flex;
+  background-color: #ecf5f9;
+  border-bottom: 1px solid var(--border-color);
+}
+#results .label {
   font-weight: bold;
 }
-
-.flex { padding: 10px; }
-.flex2 { width: 20%; }
-.flex4 { width: 40%; }
-
-.flex2 img {
+#results .flex {
+  padding: 10px;
+}
+#results .flex2 {
+  width: 20%;
+}
+#results .flex4 {
+  width: 40%;
+}
+#results .flex2 img {
   width: 100%;
   height: auto;
 }
 
+#summary {
+  flex: 0;
+  padding: 3px;
+  border: 1px solid var(--border-color);
+  background-color: #333;
+  color: #aaa;
+}
+#summary p {
+  display: inline-block;
+}
+#summary p.label {
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=style.css.map */

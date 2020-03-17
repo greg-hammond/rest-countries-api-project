@@ -1,0 +1,120 @@
+
+html, body {
+  --border-color: #666;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+div, label, p, input, button {
+  font-family:  "open sans", arial, sans-serif;
+  font-size: 14px;
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
+}
+
+#main {
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;   // stack form, content, summary vertically
+
+  width: 70%;
+  min-width: 700px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+
+
+#header { 
+  flex: 0; 
+
+
+  .search-options {
+    display: flex;
+    margin: 10px 0;
+  
+
+    & div {
+      margin-right: 10px;
+    }
+  
+    & input, & label {
+      padding: 10px;
+    }
+  
+  }
+  
+  .search-entry {
+    margin-bottom: 10px;
+  
+    & input {
+      padding: 3px 15px;
+    }
+  
+  }
+
+}
+
+
+
+
+#results {
+
+  flex: 1;
+  overflow: auto;
+
+  border: 1px solid var(--border-color);
+
+
+  &.errorState {
+    padding-top: 30px;
+    text-align: center;
+    color: red;
+  }
+
+  .country {
+    display: flex;
+    background-color: hsl(196, 50%, 95%);
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .label { font-weight: bold;}
+  .flex { padding: 10px; }
+  .flex2 { width: 20%; }
+  .flex4 { width: 40%; }
+  
+  .flex2 img {
+    width: 100%;
+    height: auto;
+  }
+
+}
+
+
+
+
+#summary { 
+  flex: 0;
+  padding: 3px;
+  border: 1px solid var(--border-color);
+  background-color: #333;
+  color: #aaa;
+  
+  p {
+    display: inline-block;
+
+    &.label {
+      font-weight: bold;
+    }
+
+  }
+
+}
