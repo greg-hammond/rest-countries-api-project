@@ -3,42 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>REST Countries API</title>
     <link rel="stylesheet" href="style.css">
     <script src="scripts.js"></script>
 </head>
 
 <body>
-    
 
     <div id="main">
 
-        <h1>Rest Countries API Project</h1>
+        <div id="header">
 
+            <form id="theForm">
+                <h2>Rest Countries API Project</h2>
+                <hr>
+                <div class='search-options'>
+                    <div>
+                        <p>Search by:</p>
+                    </div>
+                    <div>
+                        <input type="radio" id="opt-name" name="searchType" value="1" checked>
+                        <label for="opt-name">Country name</label>
+                        <br>
+                        <input type="radio" id="opt-code" name="searchType" value="2">
+                        <label for="opt-code">Country code</label>
+                    </div>
     
-        <form id="theForm" class="border">
+                    <div>
+                        <input type="checkbox" name="fullName" id="fullName">
+                        <label for="fullName">Exact match</label>
+                    </div>
+                </div>
     
-            <label for="search">Search for:</label>
-            <input type="text" name="search" />
+                <div class="search-entry">
+                    <label for="search">Search for:</label>
+                    <input type="text" name="search" id="search" />
+                    <input type="submit" value="Go">    
+                </div>
     
-            <input type="submit" value="Search">
+            </form>
     
-            <br>
-    
-            <input type="checkbox" name="fullName" id="fullName">
-            <label for="fullName">Exact Match</label>
-    
-            
-    
-    
-        </form>
-    
-        <div id="results" class="border">
-    
+
         </div>
-    
+
+        <div id="results"></div>
+
+        <div id="summary">
+            <div><p class="label">Countries Found:&nbsp;</p><p id="result-count"></p></div>
+            <div><p class="label">Regions:&nbsp;</p><p id="region-list"></p></div>
+            <div><p class="label">Subregions:&nbsp;</p><p id="subregion-list"></p></div>
+        </div>
 
     </div>
 
 </body>
+
 </html>
