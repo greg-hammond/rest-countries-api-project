@@ -7,26 +7,23 @@ html, body {
   box-sizing: border-box;
 }
 
-
 div, label, p, input, button {
   font-family:  "open sans", arial, sans-serif;
   font-size: 14px;
   margin: 0;
 }
 
-h2 {
-  margin: 0;
-}
 
 #main {
 
-  height: 100%;
   display: flex;
-  flex-direction: column;   // stack form, content, summary vertically
+  flex-direction: column;   // stack form + content + summary vertically
 
+  height: 100%;
   width: 70%;
   min-width: 700px;
   max-width: 1000px;
+
   margin: 0 auto;
   padding: 0;
 }
@@ -87,8 +84,8 @@ h2 {
   }
   
   .label { font-weight: bold;}
-  .flex { padding: 10px; }
-  .flex2 { width: 20%; }
+  .flex { padding: 10px 20px; }
+  .flex2 { width: 10%; }
   .flex4 { width: 40%; }
   
   .flex2 img {
@@ -103,10 +100,11 @@ h2 {
 
 #summary { 
   flex: 0;
-  padding: 3px;
-  border: 1px solid var(--border-color);
-  background-color: #333;
-  color: #aaa;
+  padding: 20px 10px;
+  border-color: var(--border-color);
+  border-style: solid;
+  border-width: 0 1px;
+  background-color: hsl(196, 70%, 80%);
   
   p {
     display: inline-block;

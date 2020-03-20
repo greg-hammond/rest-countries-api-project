@@ -9,6 +9,72 @@ const init = () => {
     document.getElementById("search").focus();
 
 
+
+    // =======================================================================
+    // perform the backend call (php -> REST API) to run the search
+    // uses async/await - returns a promise
+    //
+    const runSearch = async formData => {
+
+        const resp = await fetch("restcountries.php", {
+            method: "POST",
+            body: formData
+        });
+
+        const rslt = await resp.json();
+        return rslt;
+    }
+    
+
+    // =======================================================================
+    //  set summary data at bottom of page
+    //
+    const setSummary = (count, regions, subregions) => {
+
+        document.getElementById("result-count").textContent = count;
+        document.getElementById("region-list").textContent = regions;
+        document.getElementById("subregion-list").textContent = subregions;
+
+    }
+    
+
+
+    //=============================================================================
+    // getSummaryString - build summary count data - helper function
+    // called by 
+    //
+    // input: object    obj[key_i] = count_i
+    // output: string   key1 (cnt1) | key2 (cnt2) | key3 (cnt3) ...
+    // sorted by descending count
+    //
+    const getSummaryString = countObj => {
+
+        return Object.keys(countObj)
+        .sort( (a, b) => {
+            return ( countObj[b] - countObj[a] )
+        })
+        .map( i => ` ${i} (${countObj[i]}) `)
+        .join("|");
+
+    };
+
+
+
+    // =======================================================================
+    // clear page
+    //
+    const clearResults = () => {
+        // clear any prior results / state
+        rsltDiv.classList.remove("errorState");
+        while (rsltDiv.firstChild) {
+            rsltDiv.firstChild.remove();
+        }
+        setSummary("", "", "");
+    }
+
+
+
+
     // =======================================================================
     // form "submit" handling
     // 
@@ -20,6 +86,9 @@ const init = () => {
 
         const formData = new FormData(form);    
         const srch = formData.get("search");
+
+        clearResults();
+
 
         // check for blank search field
         if (!srch) {
@@ -42,38 +111,13 @@ const init = () => {
     })
     
 
-    // =======================================================================
-    // perform the backend call (php -> REST API) to run the search
-    // uses async/await - returns a promise
-    //
-    async function runSearch(formData)  {
 
-        const resp = await fetch("restcountries.php", {
-            method: "POST",
-            body: formData
-        });
-
-        const rslt = await resp.json();
-        return rslt;
-    }
-
-
-    
-    const clearResults = () => {
-        // clear any prior results / state
-        rsltDiv.classList.remove("errorState");
-        while (rsltDiv.firstChild) {
-            rsltDiv.firstChild.remove();
-        }
-
-    }
-    
+    //==============================================================================
+    //    
     const showErrorResult = errText => {
-        clearResults();
         rsltDiv.classList.add("errorState");
         rsltDiv.textContent = errText;
     }
-
 
 
 
@@ -82,16 +126,13 @@ const init = () => {
     //
     const showResults = results => {
         
-
-        // handle error conditions
+        // handle errors returned from API call
         if (results.error) {        
             showErrorResult(results.errMsg);
             return;
 
-
+        // normal case - we have data to show
         } else {
-
-            clearResults();
 
             const nf = new Intl.NumberFormat();  // use for thousands separators below
             let countryCount = 0, regCount = {}, subCount = {};
@@ -129,23 +170,10 @@ const init = () => {
                 `;
 
                 rsltDiv.appendChild(div);
-
             });
 
-
-            document.getElementById("result-count").textContent = countryCount;
-
-            let str = "";
-            for (let key in regCount) {
-                str += `${key} (${regCount[key]})  |  `;
-            }
-            document.getElementById("region-list").textContent = str;
-
-            str = "";
-            for (let key in subCount) {
-                str += `${key} (${subCount[key]})  |  `;
-            }
-            document.getElementById("subregion-list").textContent = str;
+            //Build content for bottom summary
+            setSummary(countryCount, getSummaryString(regCount), getSummaryString(subCount));
 
         }
 

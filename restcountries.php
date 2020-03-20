@@ -20,25 +20,26 @@ notes - oddness / irregularities / comments on API behavior:
 
 - country code search:  sending anything other than 2 or 3 characters will result in 
     {"status":400,"message":"Bad Request"}
+    (just FYI - I am already doing client-side validation against this condition)
 
 - for either type of search, when no results are found, the API returns:
     {"status":404,"message":"Not Found"}
 
 - when performing a name lookup, results are always returned as an array of objects, even when
-    there is only one result.  By contrast, when performing a country code lookup - which will 
-    only ever return 1 result - that result is sent as a single object, and NOT as an array.
+    there is only one result.  By contrast, when performing a country code lookup (which will 
+    only ever return 1 result) - that result is sent as a single object, and NOT as an array.
     That requires special handling below.
 
-- it seems like using '?fullText=true' and ?fields filtering interfere with each other...
+- it seems like using both '?fullText=true' and ?fields filtering interfere with each other...
   so I am doing one or the other but not both.
 
 ---------------------------------------------------------------------------------------------------*/
 
 
+
     // --------------------------------------------------------------------------
     // query URL construction
-
-    
+    //
     // field names we need to retrieve (API filter)
     $fields = array(
         "name", 
@@ -107,7 +108,6 @@ notes - oddness / irregularities / comments on API behavior:
             $data->errMsg = "An unknown error occurred - please try again.";
         };
 
-
         echo json_encode($data);
 
 
@@ -115,13 +115,13 @@ notes - oddness / irregularities / comments on API behavior:
 
         // country code search returns one object, NOT wrapped in an array.
         // whereas lookup-by-name always returns an array of objects.
-
         // easiest to just convert to array if needed:
         if (!is_array($data)) {
             $data = array($data);
         }
 
         // sort alpha ascending on name
+        // specs say to use population as 2nd sort key, but names should be unique, therefore pop sort is N/A
         usort($data, function ($a, $b) {return strcmp($a->name, $b->name);} );
 
         // limit result set to first 50
