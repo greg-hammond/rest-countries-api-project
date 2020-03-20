@@ -33,17 +33,15 @@ div, label, p, input, button {
 #header { 
   flex: 0; 
 
-
   .search-options {
     display: flex;
     margin: 10px 0;
   
-
-    & div {
+    div {
       margin-right: 10px;
     }
   
-    & input, & label {
+    input, label {
       padding: 10px;
     }
   
@@ -52,7 +50,7 @@ div, label, p, input, button {
   .search-entry {
     margin-bottom: 10px;
   
-    & input {
+    input {
       padding: 3px 15px;
     }
   
@@ -61,15 +59,11 @@ div, label, p, input, button {
 }
 
 
-
-
 #results {
 
   flex: 1;
   overflow: auto;
-
   border: 1px solid var(--border-color);
-
 
   &.errorState {
     padding-top: 30px;
@@ -94,8 +88,6 @@ div, label, p, input, button {
   }
 
 }
-
-
 
 
 #summary { 

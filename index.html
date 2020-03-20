@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REST Countries API</title>
+    <link rel="shortcut icon" type="image/png" href="favicon-32x32.png"/>
     <link rel="stylesheet" href="style.css">
     <script src="scripts.js"></script>
 </head>
@@ -11,9 +12,9 @@
 <body>
 
     <div id="main">
-
+    
         <div id="header">
-
+    
             <form id="theForm">
                 <h2>Rest Countries API Project</h2>
                 <hr>
@@ -38,24 +39,32 @@
                 <div class="search-entry">
                     <label for="search">Search for:</label>
                     <input type="text" name="search" id="search" />
-                    <input type="submit" value="Go">    
+                    <input type="submit" value="Go">
                 </div>
     
             </form>
     
-
         </div>
-
+    
         <div id="results"></div>
-
+    
         <div id="summary">
-            <div><p class="label">Countries Found:&nbsp;</p><p id="result-count"></p></div>
-            <div><p class="label">Regions:&nbsp;</p><p id="region-list"></p></div>
-            <div><p class="label">Subregions:&nbsp;</p><p id="subregion-list"></p></div>
+            <div>
+                <p class="label">Countries Found:&nbsp;</p>
+                <p id="result-count"></p>
+            </div>
+            <div>
+                <p class="label">Regions:&nbsp;</p>
+                <p id="region-list"></p>
+            </div>
+            <div>
+                <p class="label">Subregions:&nbsp;</p>
+                <p id="subregion-list"></p>
+            </div>
         </div>
-
+    
     </div>
-
-</body>
+    
+    </body>
 
 </html>

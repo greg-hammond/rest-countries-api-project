@@ -41,7 +41,6 @@ const init = () => {
 
     //=============================================================================
     // getSummaryString - build summary count data - helper function
-    // called by 
     //
     // input: object    obj[key_i] = count_i
     // output: string   key1 (cnt1) | key2 (cnt2) | key3 (cnt3) ...
